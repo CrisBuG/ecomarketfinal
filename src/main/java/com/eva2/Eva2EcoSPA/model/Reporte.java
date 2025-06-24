@@ -1,4 +1,5 @@
 package com.eva2.Eva2EcoSPA.model;
+
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -17,7 +18,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Reporte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

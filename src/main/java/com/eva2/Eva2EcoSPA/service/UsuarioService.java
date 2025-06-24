@@ -24,7 +24,7 @@ public class UsuarioService {
     }
 
     public Usuario buscarPorId(int id) {
-        return usuarioRepository.findById(id).get();
+    return usuarioRepository.findById(id).orElse(null);
     }
 
     public void eliminar(int id) {

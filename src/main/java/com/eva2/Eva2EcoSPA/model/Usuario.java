@@ -2,6 +2,9 @@ package com.eva2.Eva2EcoSPA.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +36,10 @@ public class Usuario {
     private String rol;
     
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Lista> listas;
     
     @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference("usuario-pedidos")
     private List<Pedido> pedidos;
 }

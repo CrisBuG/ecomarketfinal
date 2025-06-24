@@ -3,6 +3,9 @@ package com.eva2.Eva2EcoSPA.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,12 +35,15 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonBackReference("usuario-pedidos")
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "producto_id", nullable = false)
+    @JsonBackReference("producto-pedidos")
     private Producto producto;
     
     @OneToMany(mappedBy = "pedido")
+    @JsonIgnore
     private List<Envio> envios;
 }

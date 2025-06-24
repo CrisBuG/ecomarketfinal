@@ -33,10 +33,19 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuario(@PathVariable int id) {
+    public ResponseEntity<Usuario> obtenerUsuario(@PathVariable("id") String idStr) {
+    try {
+        int id = Integer.parseInt(idStr.trim());
         Usuario usuario = usuarioService.buscarPorId(id);
-        return usuario != null ? ResponseEntity.ok(usuario) : ResponseEntity.notFound().build();
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    } catch (NumberFormatException e) {
+        return ResponseEntity.badRequest().build();
     }
+}
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> actualizarUsuario(

@@ -1,5 +1,9 @@
 package com.eva2.Eva2EcoSPA.model;
+
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,8 +34,10 @@ public class Producto {
     private String categoria;
 
     @OneToMany(mappedBy = "producto")
+    @JsonIgnore
     private List<Lista> listas;
 
     @OneToMany(mappedBy = "producto")
+    @JsonManagedReference("producto-pedidos")
     private List<Pedido> pedidos;
 }
